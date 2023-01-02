@@ -137,6 +137,7 @@ class WorkerThread (QThread):
     result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
     def run(self):
+        print('Inside Run')
         while(self.video.isOpened()):
     
             # tic = time.time() 
