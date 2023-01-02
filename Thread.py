@@ -15,6 +15,7 @@ from shapely.geometry import Polygon
 import pygame
 
 class WorkerThread (QThread):
+    sig = pyqtSignal(int, int)
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
@@ -206,12 +207,14 @@ class WorkerThread (QThread):
                         # Find intersection(whether overlapping)
                         if poly1.intersects(poly2):
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
+                            self.sig.emit(1, 28)
                             pygame.mixer.init()
                             pygame.mixer.music.load("beep-08b.wav")
                             pygame.mixer.music.play()
                             
                         if poly_critical.intersects(poly2):
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
+                            self.sig.emit(1, 28)
                             pygame.mixer.init()
                             pygame.mixer.music.load("beep-09.wav")
                             pygame.mixer.music.play()

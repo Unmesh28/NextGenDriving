@@ -699,9 +699,11 @@ class Ui_MainWindow(object):
     def ThreadOpen(self):
         self.worker = WorkerThread()
         self.worker.start()
+        self.worker.sig.connect(self.changeImg)
         #self.worker.IsWiFi.connect(self.WiFi_Connected)
         #self.worker.IsBlue.connect(self.BlueT_Connected)
         #self.worker.timeNow.connect(self.update_Time)
+
 
     def update_Time(self,val):
           self.timeDis.setText(val)
