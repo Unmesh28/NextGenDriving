@@ -236,7 +236,7 @@ class WorkerThread (QThread):
                         #     print('collision! Alert!')
                             
                 # All the results have been drawn on the frame, so it's time to display it.
-                cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
+                #cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
                 # plt.show()
                 
                 result.write(frame)
