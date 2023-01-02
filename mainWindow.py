@@ -5,6 +5,7 @@ from PyQt5 import QtCore, QtWidgets
 from datetime import datetime
 from PyQt5.QtWidgets import QButtonGroup, QGraphicsBlurEffect
 from Thread import WorkerThread
+from PyQt5.QtCore import QThread, pyqtSignal
 
 
 
@@ -706,6 +707,7 @@ class Ui_MainWindow(object):
         self.worker = WorkerThread(self)
         self.worker.start()
         self.worker.sig.connect(self.changeImg)
+        self.worker.moveToThread(QThread())
         #self.worker.IsWiFi.connect(self.WiFi_Connected)
         #self.worker.IsBlue.connect(self.BlueT_Connected)
         #self.worker.timeNow.connect(self.update_Time)
