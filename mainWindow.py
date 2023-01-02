@@ -348,7 +348,7 @@ class Ui_MainWindow(object):
         self.btn_grp.addButton(self.btn12)
 
 
-        self.ThreadOpen()
+        #self.ThreadOpen()
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -421,6 +421,8 @@ class Ui_MainWindow(object):
         "color:#FFFFFF;")
         self.toggleBtn.setObjectName("toggleBtn")
         self.toggleBtn.clicked.connect(self.toggleTheme)
+
+        self.ThreadOpen()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
