@@ -834,7 +834,7 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
-    MainWindow.show()
     ui.changeImg(1, 37)
+    MainWindow.show()
     sys.exit(app.exec())
 
