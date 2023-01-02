@@ -137,7 +137,7 @@ class WorkerThread (QThread):
     result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
     def run(self):
-        while(video.isOpened()):
+        while(self.video.isOpened()):
     
             # tic = time.time() 
             # Acquire frame and resize to expected shape [1xHxWx3]
