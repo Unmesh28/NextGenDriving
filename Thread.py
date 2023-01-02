@@ -136,14 +136,14 @@ class WorkerThread (QThread):
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
-    def run(self, video, result):
+    def run(self):
         while(video.isOpened()):
     
             # tic = time.time() 
             # Acquire frame and resize to expected shape [1xHxWx3]
-            ret, frame = video.read()
-            frame_num = video.get(cv2.CAP_PROP_POS_FRAMES)
-            print(video.get(cv2.CAP_PROP_POS_FRAMES))
+            ret, frame = self.video.read()
+            frame_num = self.video.get(cv2.CAP_PROP_POS_FRAMES)
+            print(self.video.get(cv2.CAP_PROP_POS_FRAMES))
             if not ret:
                 print('Reached the end of the video!')
             break
@@ -243,8 +243,8 @@ class WorkerThread (QThread):
                     break
 
         # Clean up
-        video.release()
-        result.release()
+        self.video.release()
+        self.result.release()
 
         cv2.destroyAllWindows()
 
