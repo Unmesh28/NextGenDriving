@@ -152,7 +152,7 @@ class WorkerThread (QThread):
                 break
             if int(frame_num)%5 == 1:
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                frame_resized = cv2.resize(frame_rgb, (width, height))
+                frame_resized = cv2.resize(frame_rgb, (self.width, self.height))
                 input_data = np.expand_dims(frame_resized, axis=0)
 
                 # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
@@ -193,10 +193,10 @@ class WorkerThread (QThread):
 
                         # Get bounding box coordinates and draw box
                         # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
-                        ymin = int(max(1,(boxes[i][0] * imH)))
-                        xmin = int(max(1,(boxes[i][1] * imW)))
-                        ymax = int(min(imH,(boxes[i][2] * imH)))
-                        xmax = int(min(imW,(boxes[i][3] * imW)))
+                        ymin = int(max(1,(boxes[i][0] * self.imH)))
+                        xmin = int(max(1,(boxes[i][1] * self.imW)))
+                        ymax = int(min(self.imH,(boxes[i][2] * self.imH)))
+                        xmax = int(min(self.imW,(boxes[i][3] * self.imW)))
                         
                         # cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 4)
                         
@@ -240,7 +240,7 @@ class WorkerThread (QThread):
                 #cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
                 # plt.show()
                 
-                result.write(frame)
+                self.result.write(frame)
                 
                 # toc = time.time()
                 # print(toc-tic, 'seconds')
