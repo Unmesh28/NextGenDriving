@@ -207,6 +207,7 @@ class WorkerThread (QThread):
                         # Find intersection(whether overlapping)
                         if poly1.intersects(poly2):
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
+                            print('Collision')
                             self.sig.emit(1, 28)
                             pygame.mixer.init()
                             pygame.mixer.music.load("beep-08b.wav")
@@ -214,6 +215,7 @@ class WorkerThread (QThread):
                             
                         if poly_critical.intersects(poly2):
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
+                            print('Collision')
                             self.sig.emit(1, 28)
                             pygame.mixer.init()
                             pygame.mixer.music.load("beep-09.wav")
