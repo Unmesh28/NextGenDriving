@@ -16,13 +16,16 @@ import pygame
 import multiprocessing
 
 import logging
-
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 class WorkerThread (multiprocessing.Process):
     
     sig = pyqtSignal(int, int)
     logging.debug('Test Logging')
+
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
