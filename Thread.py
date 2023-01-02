@@ -16,10 +16,10 @@ import pygame
 
 import logging
 
-
+logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 class WorkerThread (QThread):
-    logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+    
     sig = pyqtSignal(int, int)
 
     # timeNow = pyqtSignal(str)
