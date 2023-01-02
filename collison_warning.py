@@ -49,7 +49,7 @@ GRAPH_NAME = 'detect.tflite'
 LABELMAP_NAME = 'labelmap.txt'
 VIDEO_NAME = './00380017.AVI'
 min_conf_threshold = float(0.5)
-use_TPU = True
+use_TPU = False
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
