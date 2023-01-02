@@ -13,12 +13,13 @@ import time
 from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
+import multiprocessing
 
 import logging
 
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-class WorkerThread (QThread):
+class WorkerThread (multiprocessing.Process):
     
     sig = pyqtSignal(int, int)
     logging.debug('Test Logging')
