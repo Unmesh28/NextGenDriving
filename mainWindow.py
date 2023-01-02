@@ -13,6 +13,9 @@ from secondWindow import Ui_secondWindow
 
 class Ui_MainWindow(object):
 
+    def __init__(self):
+        super().__init__()
+
     btn_state = [0,0,0,0,0,0,0,0]
     toggle_State = 0
 
