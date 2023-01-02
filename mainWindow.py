@@ -697,7 +697,7 @@ class Ui_MainWindow(object):
 
 
     def ThreadOpen(self):
-        self.worker = WorkerThread()
+        self.worker = WorkerThread(self)
         self.worker.start()
         self.worker.sig.connect(self.changeImg)
         #self.worker.IsWiFi.connect(self.WiFi_Connected)
