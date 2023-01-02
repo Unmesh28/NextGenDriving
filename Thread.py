@@ -14,7 +14,12 @@ from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
 
+import logging
+
+
+
 class WorkerThread (QThread):
+    logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
     sig = pyqtSignal(int, int)
 
     # timeNow = pyqtSignal(str)
@@ -141,6 +146,7 @@ class WorkerThread (QThread):
         print('Inside Run')
         while(self.video.isOpened()):
             print('Video Opened')
+            logging.debug('Video Opened')
     
             # tic = time.time() 
             # Acquire frame and resize to expected shape [1xHxWx3]
