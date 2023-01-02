@@ -14,6 +14,7 @@ from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
 import multiprocessing
+from PyQt5.QtWidgets import QApplication
 
 import logging
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -260,6 +261,8 @@ class WorkerThread (multiprocessing.Process):
                 # plt.show()
                 
                 self.result.write(frame)
+                QApplication.processEvents()
+
                 
                 # toc = time.time()
                 # print(toc-tic, 'seconds')
