@@ -27,29 +27,29 @@ import pygame
 
 
 
-# Define and parse input arguments
-parser = argparse.ArgumentParser()
-parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
-                    required=True)
-parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
-                    default='detect.tflite')
-parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
-                    default='labelmap.txt')
-parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
-                    default=0.5)
-parser.add_argument('--video', help='Name of the video file',
-                    default='test.mp4')
-parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
-                    action='store_true')
+# # Define and parse input arguments
+# parser = argparse.ArgumentParser()
+# parser.add_argument('--modeldir', help='Folder the .tflite file is located in',
+#                     required=True)
+# parser.add_argument('--graph', help='Name of the .tflite file, if different than detect.tflite',
+#                     default='detect.tflite')
+# parser.add_argument('--labels', help='Name of the labelmap file, if different than labelmap.txt',
+#                     default='labelmap.txt')
+# parser.add_argument('--threshold', help='Minimum confidence threshold for displaying detected objects',
+#                     default=0.5)
+# parser.add_argument('--video', help='Name of the video file',
+#                     default='test.mp4')
+# parser.add_argument('--edgetpu', help='Use Coral Edge TPU Accelerator to speed up detection',
+#                     action='store_true')
 
-args = parser.parse_args()
+#args = parser.parse_args()
 
-MODEL_NAME = args.modeldir
-GRAPH_NAME = args.graph
-LABELMAP_NAME = args.labels
-VIDEO_NAME = args.video
-min_conf_threshold = float(args.threshold)
-use_TPU = args.edgetpu
+MODEL_NAME = './Sample_TFLite_model/'
+GRAPH_NAME = 'detect.tflite'
+LABELMAP_NAME = 'labelmap.txt'
+VIDEO_NAME = './00380017.AVI'
+min_conf_threshold = float(0.5)
+use_TPU = 'store_true'
 
 # Import TensorFlow libraries
 # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
