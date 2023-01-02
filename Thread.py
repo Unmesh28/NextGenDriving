@@ -156,20 +156,20 @@ class WorkerThread (QThread):
                 input_data = np.expand_dims(frame_resized, axis=0)
 
                 # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
-                if floating_model:
-                    input_data = (np.float32(input_data) - input_mean) / input_std
+                if self.floating_model:
+                    input_data = (np.float32(input_data) - self.input_mean) / self.input_std
 
                 # Perform the actual detection by running the model with the image as input
                 tic = time.time() 
-                interpreter.set_tensor(input_details[0]['index'],input_data)
-                interpreter.invoke()
+                self.interpreter.set_tensor(self.input_details[0]['index'],input_data)
+                self.interpreter.invoke()
                 toc = time.time()
                 print(toc-tic, 'seconds')
 
                 # Retrieve detection results
-                boxes = interpreter.get_tensor(output_details[boxes_idx]['index'])[0] # Bounding box coordinates of detected objects
-                classes = interpreter.get_tensor(output_details[classes_idx]['index'])[0] # Class index of detected objects
-                scores = interpreter.get_tensor(output_details[scores_idx]['index'])[0] # Confidence of detected objects
+                boxes = self.interpreter.get_tensor(self.output_details[self.boxes_idx]['index'])[0] # Bounding box coordinates of detected objects
+                classes = self.interpreter.get_tensor(self.output_details[self.classes_idx]['index'])[0] # Class index of detected objects
+                scores = self.interpreter.get_tensor(self.output_details[self.scores_idx]['index'])[0] # Confidence of detected objects
                 
                 # Plot predicted trajectory (safe zone)
                 # p1, p2, p3, p4 = map(Point, [(570, 1074), (856, 758), (1062, 756), (1372, 1078)])
@@ -189,7 +189,7 @@ class WorkerThread (QThread):
                 
                 # Loop over all detections and draw detection box if confidence is above minimum threshold
                 for i in range(len(scores)):
-                    if ((scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
+                    if ((scores[i] > self.min_conf_threshold) and (scores[i] <= 1.0)):
 
                         # Get bounding box coordinates and draw box
                         # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
@@ -226,7 +226,7 @@ class WorkerThread (QThread):
                         
                         
                         # Draw label
-                        object_name = labels[int(classes[i])] # Look up object name from "labels" array using class index
+                        object_name = self.labels[int(classes[i])] # Look up object name from "labels" array using class index
                         label = '%s: %d%%' % (object_name, int(scores[i]*100)) # Example: 'person: 72%'
                         labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2) # Get font size
                         label_ymin = max(ymin, labelSize[1] + 10) # Make sure not to draw label too close to top of window
