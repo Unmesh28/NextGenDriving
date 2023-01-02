@@ -140,6 +140,7 @@ class WorkerThread (QThread):
     def run(self):
         print('Inside Run')
         while(self.video.isOpened()):
+            print('Video Opened')
     
             # tic = time.time() 
             # Acquire frame and resize to expected shape [1xHxWx3]
