@@ -24,7 +24,7 @@ import time
 from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
-from pynput.keyboard import Key, Controller
+
 
 
 # Define and parse input arguments
@@ -131,7 +131,6 @@ imH = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
-keyboard = Controller()
 
 while(video.isOpened()):
     
@@ -210,10 +209,6 @@ while(video.isOpened()):
                     pygame.mixer.init()
                     pygame.mixer.music.load("beep-09.wav")
                     pygame.mixer.music.play()
-
-          
-
-            
   
                 # print(isIntersection)
                 
