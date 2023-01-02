@@ -146,6 +146,7 @@ class WorkerThread (QThread):
             # Acquire frame and resize to expected shape [1xHxWx3]
             ret, frame = self.video.read()
             frame_num = self.video.get(cv2.CAP_PROP_POS_FRAMES)
+            print('Frame No' + str(frame_num))
             print(self.video.get(cv2.CAP_PROP_POS_FRAMES))
             if not ret:
                 print('Reached the end of the video!')
@@ -237,7 +238,7 @@ class WorkerThread (QThread):
                         #     print('collision! Alert!')
                             
                 # All the results have been drawn on the frame, so it's time to display it.
-                cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
+                #cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
                 # plt.show()
                 
                 self.result.write(frame)
