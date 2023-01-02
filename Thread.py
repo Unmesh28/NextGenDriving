@@ -152,6 +152,7 @@ class WorkerThread (QThread):
                 print('Reached the end of the video!')
                 break
             if int(frame_num)%5 == 1:
+                print('Inside if')
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 frame_resized = cv2.resize(frame_rgb, (self.width, self.height))
                 input_data = np.expand_dims(frame_resized, axis=0)
@@ -181,6 +182,7 @@ class WorkerThread (QThread):
                 # Delhi night data safe zone contours
                 poly1 = Polygon([(850, 1079), (1314, 734), (1456, 738), (1620, 1079)])  #shapely
                 # contours = np.array([[570, 1074], [856, 758], [1062, 756], [1372, 1078]])
+                print('Poly1 : ' + str(poly1))
                 
                 poly_critical = Polygon([(808, 1079), (1196, 792), (1424, 788), (1422, 1079)])        
                 # contours = np.array([[850, 1079], [1314, 734], [1456, 738], [1620, 1079]])
@@ -190,7 +192,9 @@ class WorkerThread (QThread):
                 
                 # Loop over all detections and draw detection box if confidence is above minimum threshold
                 for i in range(len(scores)):
+                    print('inside for')
                     if ((scores[i] > self.min_conf_threshold) and (scores[i] <= 1.0)):
+                        print('inside if')
 
                         # Get bounding box coordinates and draw box
                         # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
@@ -208,6 +212,7 @@ class WorkerThread (QThread):
                         
                         # Find intersection(whether overlapping)
                         if poly1.intersects(poly2):
+                            print('intersection1')
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
                             print('Collision')
                             self.sig.emit(1, 28)
@@ -216,6 +221,7 @@ class WorkerThread (QThread):
                             pygame.mixer.music.play()
                             
                         if poly_critical.intersects(poly2):
+                            print('Intersection2')
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
                             print('Collision')
                             self.sig.emit(1, 28)
