@@ -16,11 +16,12 @@ import pygame
 
 import logging
 
-logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+#logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 class WorkerThread (QThread):
     
     sig = pyqtSignal(int, int)
+    logging.debug('Test Logging')
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
