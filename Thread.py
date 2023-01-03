@@ -19,7 +19,7 @@ from PyQt5.QtWidgets import QApplication
 import logging
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-class WorkerThread (QObject, multiprocessing.Process):
+class WorkerThread (QObject, QThread):
     
     sig = pyqtSignal(int, int)
     logging.debug('Test Logging')
