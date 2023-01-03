@@ -60,6 +60,7 @@ class WorkerThread (QObject, multiprocessing.Process):
     #             self.IsBlue.emit(False)
 
 
+    sig.emit(1, 37)
     MODEL_NAME = './Sample_TFLite_model/'
     GRAPH_NAME = 'detect.tflite'
     LABELMAP_NAME = 'labelmap.txt'
