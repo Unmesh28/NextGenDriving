@@ -15,6 +15,7 @@ from shapely.geometry import Polygon
 import pygame
 import multiprocessing
 from PyQt5.QtWidgets import QApplication
+import threading
 
 import logging
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -26,6 +27,7 @@ class WorkerThread (QThread):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.lock = threading.Lock()
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
@@ -149,6 +151,7 @@ class WorkerThread (QThread):
     result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
     def run(self):
+        self.lock.acquire()
         print('Inside Run')
         self.sig.emit(1, 37)
         
@@ -281,8 +284,10 @@ class WorkerThread (QThread):
         # Clean up
         self.video.release()
         self.result.release()
+        
 
         cv2.destroyAllWindows()
+        self.lock.release()
 
 
 
