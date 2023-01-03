@@ -256,6 +256,7 @@ class WorkerThread (multiprocessing.Process):
                         
                         # if poly1.intersection(poly2):
                         #     print('collision! Alert!')
+                        QApplication.processEvents()
                             
                 # All the results have been drawn on the frame, so it's time to display it.
                 #cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
@@ -272,7 +273,7 @@ class WorkerThread (multiprocessing.Process):
                 if cv2.waitKey(1) == ord('q'):
                     break
 
-                QApplication.processEvents()
+                
 
         # Clean up
         self.video.release()
