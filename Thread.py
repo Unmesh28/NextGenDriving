@@ -14,19 +14,18 @@ from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
 import multiprocessing
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QObject
 
 import logging
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-class WorkerThread (multiprocessing.Process):
+class WorkerThread (QObject, multiprocessing.Process):
     
     sig = pyqtSignal(int, int)
     logging.debug('Test Logging')
 
-    def __init__(self, parent):
-        super().__init__()
-        self.parent = parent
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
