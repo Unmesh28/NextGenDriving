@@ -1,6 +1,6 @@
 import bluetooth
 import requests
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import QThread, pyqtSignal, QObject
 from datetime import datetime
 import os
 import argparse
@@ -14,7 +14,7 @@ from shapely.geometry import Polygon
 # import matplotlib.pyplot as plt
 import pygame
 import multiprocessing
-from PyQt5.QtWidgets import QApplication, QObject
+from PyQt5.QtWidgets import QApplication
 
 import logging
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
