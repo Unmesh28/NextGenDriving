@@ -150,7 +150,7 @@ class WorkerThread (QObject, multiprocessing.Process):
 
     def run(self):
         print('Inside Run')
-        sig.emit(1, 37)
+        self.sig.emit(1, 37)
         
         while(self.video.isOpened()):
             print('Video Opened')
