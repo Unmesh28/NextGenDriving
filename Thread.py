@@ -44,7 +44,7 @@ class WorkerThread (QObject):
         self.thread.start()
 
 
-    @pyqtSlot()
+    
     def start_task(self):
         self.run()
         self.thread.quit()
