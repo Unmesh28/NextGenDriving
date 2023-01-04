@@ -303,7 +303,7 @@ class Ui_MainWindow(object):
                                                                       "color:Black;}")
         self.btn12.setObjectName("btn12")
         self.secondRow.addWidget(self.btn12)
-        self.btn12.clicked.connect(partial(self.clicked_btn, 12))
+        self.btn12.clicked.connect(partial(self.openNetflix))
 
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(Starting_point_x, int(Starting_point_y + 2 * top_btn_height), width_rows,int(bottom_btn_height)))
@@ -706,6 +706,10 @@ class Ui_MainWindow(object):
     def showMap(self):
         # Open Google Maps in the default web browser
         QDesktopServices.openUrl(QUrl("https://www.google.com/maps"))
+
+    def openNetflix(self):
+        # Open Google Maps in the default web browser
+        QDesktopServices.openUrl(QUrl("https://www.netflix.com/in/"))
 
 
     def ThreadOpen(self):
