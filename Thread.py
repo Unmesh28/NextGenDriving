@@ -20,7 +20,7 @@ import threading
 import logging
 #logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-class WorkerThread (QThread):
+class WorkerThread (QObject):
     
     sig = pyqtSignal(int, int)
     logging.debug('Test Logging')
@@ -29,8 +29,19 @@ class WorkerThread (QThread):
         super().__init__(parent)
         # Set the thread's daemon attribute to True.
         #self.setDaemon(True)
+        # Create the QThread object and set the Qt.WA_DeleteOnClose attribute
         self.thread = QThread(parent=self, objectName='myThread',
                               attribute=Qt.WA_DeleteOnClose)
+        # Move the worker object to the new thread
+        self.moveToThread(self.thread)
+        # Connect the thread's started signal to a slot that will start the worker's task
+        self.thread.started.connect(self.start_task)
+        # Connect the thread's finished signal to a slot that will delete the thread
+        self.thread.finished.connect(self.thread.deleteLater)
+            
+    def start(self):
+        # Start the thread
+        self.thread.start()
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)

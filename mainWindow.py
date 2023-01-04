@@ -707,7 +707,7 @@ class Ui_MainWindow(object):
         self.worker = WorkerThread(self)
         self.worker.start()
         self.worker.sig.connect(self.changeImg)
-        self.worker.moveToThread(QThread())
+        #self.worker.moveToThread(QThread())
         #self.worker.IsWiFi.connect(self.WiFi_Connected)
         #self.worker.IsBlue.connect(self.BlueT_Connected)
         #self.worker.timeNow.connect(self.update_Time)
