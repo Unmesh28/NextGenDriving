@@ -288,7 +288,7 @@ class WorkerThread (QThread):
         
 
         cv2.destroyAllWindows()
-        self.lock.release()
+        #self.lock.release()
 
 
 
