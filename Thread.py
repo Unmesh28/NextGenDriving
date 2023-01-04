@@ -152,7 +152,7 @@ class WorkerThread (QThread):
     result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
     def run(self):
-        self.lock.acquire()
+        #self.lock.acquire()
         print('Inside Run')
         self.sig.emit(1, 37)
         
