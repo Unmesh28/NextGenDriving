@@ -279,7 +279,7 @@ class Ui_MainWindow(object):
                                                                       "color:Black;}")
         self.btn11.setObjectName("btn11")
         self.secondRow.addWidget(self.btn11)
-        self.btn11.clicked.connect(partial(self.clicked_btn, 11))
+        self.btn11.clicked.connect(partial(self.showMap))
 
 
         self.btn12 = QtWidgets.QPushButton(self.horizontalLayoutWidget_2)
@@ -303,7 +303,7 @@ class Ui_MainWindow(object):
                                                                       "color:Black;}")
         self.btn12.setObjectName("btn12")
         self.secondRow.addWidget(self.btn12)
-        self.btn12.clicked.connect(self.showMap)
+        self.btn12.clicked.connect(partial(self.clicked_btn, 12))
 
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(Starting_point_x, int(Starting_point_y + 2 * top_btn_height), width_rows,int(bottom_btn_height)))
