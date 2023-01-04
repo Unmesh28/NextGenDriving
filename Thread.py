@@ -348,8 +348,9 @@ class WorkerThread (QObject):
 
             cv2.destroyAllWindows()
             #self.lock.release()
-        except :
+        except Exception as e:
             print('Exception Occured')
+            print(e)
 
 
 
