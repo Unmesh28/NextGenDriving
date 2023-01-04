@@ -169,6 +169,24 @@ class WorkerThread (QObject):
     fourcc = cv2.VideoWriter_fourcc(*'XVID')
     result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
+    person_flag = False
+    car_flag = False
+    lane_flag = False
+    speed_flag = False
+    bike_flag = False
+
+    def findImageNo(objectName):
+        if objectName == 'person' :
+            return 5
+        elif objectName == 'car' :
+            return 2
+        elif objectName == 'animal' :
+            return 1
+        else :
+            return 2 
+
+
+
     def run(self):
         try : 
             #self.lock.acquire()
@@ -229,6 +247,8 @@ class WorkerThread (QObject):
                     
                     # Loop over all detections and draw detection box if confidence is above minimum threshold
                     for i in range(len(scores)):
+                        object_name = self.labels[int(classes[i])] # Look up object name from "labels" array using class index
+                        print(object_name)
                         print('inside for')
                         if ((scores[i] > self.min_conf_threshold) and (scores[i] <= 1.0)):
                             print('inside if')
@@ -246,32 +266,49 @@ class WorkerThread (QObject):
                             # p5, p6, p7, p8 = map(Point, [(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
                             # poly2 = Polygon(p5, p6, p7, p8)
                             poly2 = Polygon([(xmin,ymin), (xmin, ymax), (xmax,ymax), (xmax,ymin)])
+
                             
                             # Find intersection(whether overlapping)
                             if poly1.intersects(poly2):
+                                imageNo = self.findImageNo(object_name)
                                 print('intersection1')
                                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 255, 255), 4)
                                 print('Collision')
-                                self.sig.emit(1, 28)
+                                self.sig.emit(imageNo, 60 + imageNo)
                                 pygame.mixer.init()
                                 pygame.mixer.music.load("beep-08b.wav")
                                 pygame.mixer.music.play()
+                            
+                            else :
+                                print('No intersection')
+                                self.sig.emit(1, 1)
+                                self.sig.emit(2, 2)
+                                self.sig.emit(3, 3)
+                                self.sig.emit(4, 4)
+                                self.sig.emit(5, 5)
                                 
                             if poly_critical.intersects(poly2):
+                                imageNo = self.findImageNo(object_name)
                                 print('Intersection2')
                                 cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
                                 print('Collision')
-                                self.sig.emit(1, 28)
+                                self.sig.emit(imageNo, 50 + imageNo)
                                 pygame.mixer.init()
                                 pygame.mixer.music.load("beep-09.wav")
                                 pygame.mixer.music.play()
+                            else :
+                                print('No intersection')
+                                self.sig.emit(1, 1)
+                                self.sig.emit(2, 2)
+                                self.sig.emit(3, 3)
+                                self.sig.emit(4, 4)
+                                self.sig.emit(5, 5)
             
                             # print(isIntersection)
                             
                             
                             # Draw label
-                            object_name = self.labels[int(classes[i])] # Look up object name from "labels" array using class index
-                            print(object_name)
+                            
                             label = '%s: %d%%' % (object_name, int(scores[i]*100)) # Example: 'person: 72%'
                             labelSize, baseLine = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2) # Get font size
                             label_ymin = max(ymin, labelSize[1] + 10) # Make sure not to draw label too close to top of window
