@@ -43,6 +43,11 @@ class WorkerThread (QObject):
         # Start the thread
         self.thread.start()
 
+
+    @pyqtSlot()
+    def start_task(self):
+        self.run()
+        self.thread.quit()
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
     # IsBlue = pyqtSignal(bool)
