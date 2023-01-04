@@ -30,8 +30,8 @@ class WorkerThread (QObject):
         # Set the thread's daemon attribute to True.
         #self.setDaemon(True)
         # Create the QThread object and set the Qt.WA_DeleteOnClose attribute
-        self.thread = QThread(parent=self, objectName='myThread',
-                              attribute=Qt.WA_DeleteOnClose)
+        self.thread = QThread(parent=self, objectName='myThread')
+        self.thread.setAttribute(Qt.WA_DeleteOnClose)
         # Move the worker object to the new thread
         self.moveToThread(self.thread)
         # Connect the thread's started signal to a slot that will start the worker's task
