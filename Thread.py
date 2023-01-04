@@ -28,7 +28,7 @@ class WorkerThread (QThread):
     def __init__(self, parent=None):
         super().__init__(parent)
         # Set the thread's daemon attribute to True.
-        self.setDaemon(True)
+        #self.setDaemon(True)
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
