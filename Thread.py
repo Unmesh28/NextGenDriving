@@ -1,6 +1,6 @@
 import bluetooth
 import requests
-from PyQt5.QtCore import QThread, pyqtSignal, QObject
+from PyQt5.QtCore import QThread, pyqtSignal, QObject, Qt
 from datetime import datetime
 import os
 import argparse
@@ -29,6 +29,8 @@ class WorkerThread (QThread):
         super().__init__(parent)
         # Set the thread's daemon attribute to True.
         #self.setDaemon(True)
+        self.thread = QThread(parent=self, objectName='myThread',
+                              attribute=Qt.WA_DeleteOnClose)
 
     # timeNow = pyqtSignal(str)
     # IsWiFi = pyqtSignal(bool)
