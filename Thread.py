@@ -193,7 +193,7 @@ class WorkerThread (QObject):
     def run(self):
         try : 
             #self.lock.acquire()
-            print('Inside Run')
+            print('Inside Run') 
             self.sig.emit(1, 37)
             
             while(self.video.isOpened()):

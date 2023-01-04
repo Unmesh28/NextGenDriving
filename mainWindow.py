@@ -6,6 +6,8 @@ from datetime import datetime
 from PyQt5.QtWidgets import QButtonGroup, QGraphicsBlurEffect
 from Thread import WorkerThread
 from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtCore import QUrl
 
 
 
@@ -301,7 +303,7 @@ class Ui_MainWindow(object):
                                                                       "color:Black;}")
         self.btn12.setObjectName("btn12")
         self.secondRow.addWidget(self.btn12)
-        self.btn12.clicked.connect(partial(self.clicked_btn, 12))
+        self.btn12.clicked.connect(self.showMap)
 
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(Starting_point_x, int(Starting_point_y + 2 * top_btn_height), width_rows,int(bottom_btn_height)))
@@ -700,6 +702,10 @@ class Ui_MainWindow(object):
                 elif (self.toggle_State==1):
                     self.changeImg(val, 20+val)
                 self.btn_state[val - 1] = 0
+
+    def showMap(self):
+        # Open Google Maps in the default web browser
+        QDesktopServices.openUrl(QUrl("https://www.google.com/maps"))
 
 
     def ThreadOpen(self):
