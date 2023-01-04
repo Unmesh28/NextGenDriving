@@ -166,7 +166,7 @@ class Ui_secondWindow(object):
         self.retranslateUi(secondWindow)
         QtCore.QMetaObject.connectSlotsByName(secondWindow)
 
-        self.ThreadOpen()
+        #self.ThreadOpen()
 
 
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)

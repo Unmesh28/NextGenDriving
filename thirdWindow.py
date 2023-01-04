@@ -179,7 +179,7 @@ class Ui_thirdWindow(object):
 
 
 
-        self.ThreadOpen()
+        #self.ThreadOpen()
 
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setGeometry(
