@@ -176,6 +176,9 @@ class WorkerThread (QObject):
     bike_flag = False
 
     def findImageNo(objectName):
+        print('innside finnd image')
+        print(objectName)
+        print(type(objectName))
         if objectName == 'person' :
             return 5
         elif objectName == 'car' :
