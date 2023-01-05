@@ -287,6 +287,8 @@ class Ui_thirdWindow(object):
         self.btn4.setObjectName("btn4")
         self.verticalLayout.addWidget(self.btn4)
 
+        #self.btn1.clicked.connect(self.ThreadOpen)
+
 
         # self.verticalLayoutWidget.raise_()
         self.verticalLayoutWidget_2.raise_()
@@ -303,9 +305,9 @@ class Ui_thirdWindow(object):
     def ThreadOpen(self):
         self.worker = WorkerThread()
         self.worker.start()
-        self.worker.IsWiFi.connect(self.WiFi_Connected)
-        self.worker.IsBlue.connect(self.BlueT_Connected)
-        self.worker.timeNow.connect(self.update_Time)
+        # self.worker.IsWiFi.connect(self.WiFi_Connected)
+        # self.worker.IsBlue.connect(self.BlueT_Connected)
+        # self.worker.timeNow.connect(self.update_Time)
 
     def update_Time(self,val):
           self.timeDis.setText(val)
