@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QGraphicsBlurEffect
 
 from thirdWindow import Ui_thirdWindow
 from Thread import WorkerThread
+from showLive import *
 
 
 
@@ -258,7 +259,7 @@ class Ui_secondWindow(object):
                                 "image: url(images/icon_2.png);")
         self.btn2.setObjectName("btn2")
         self.horizontalLayout.addWidget(self.btn2)
-        self.btn2.clicked.connect(self.clicked_btn)
+        self.btn2.clicked.connect(shw)
 
 
 
