@@ -425,7 +425,7 @@ class Ui_MainWindow(object):
         self.toggleBtn.setObjectName("toggleBtn")
         self.toggleBtn.clicked.connect(self.toggleTheme)
 
-        #self.ThreadOpen()
+        self.ThreadOpen()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
