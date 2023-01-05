@@ -94,7 +94,7 @@ def shw(self):
     try : 
         #self.lock.acquire()
         print('Inside Run') 
-        self.sig.emit(1, 37)
+        #self.sig.emit(1, 37)
         
         while(self.video.isOpened()):
             print('Video Opened')
