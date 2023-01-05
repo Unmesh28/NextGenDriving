@@ -182,11 +182,11 @@ class WorkerThread (QObject):
         if objectName == 'person' :
             return 5
         elif objectName == 'car' :
-            return 2
+            return 4
         elif objectName == 'animal' :
             return 1
         else :
-            return 2 
+            return 4 
 
 
 
