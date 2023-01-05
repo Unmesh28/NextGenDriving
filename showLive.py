@@ -90,43 +90,43 @@ imH = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 result = cv2.VideoWriter("Collision_warning_demo.avi", fourcc, 5, (1920, 1080))
 
-def shw(self):
+def shw():
     try : 
         #self.lock.acquire()
         print('Inside Run') 
         #self.sig.emit(1, 37)
         
-        while(self.video.isOpened()):
+        while(video.isOpened()):
             print('Video Opened')
             #logging.debug('Video Opened')
     
             # tic = time.time() 
             # Acquire frame and resize to expected shape [1xHxWx3]
-            ret, frame = self.video.read()
-            frame_num = self.video.get(cv2.CAP_PROP_POS_FRAMES)
+            ret, frame = video.read()
+            frame_num = video.get(cv2.CAP_PROP_POS_FRAMES)
             print('Frame No' + str(frame_num))
-            print(self.video.get(cv2.CAP_PROP_POS_FRAMES))
+            print(video.get(cv2.CAP_PROP_POS_FRAMES))
             if not ret:
                 print('Reached the end of the video!')
                 break
             if int(frame_num)%5 == 1:
                 print('Inside if')
                 frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-                frame_resized = cv2.resize(frame_rgb, (self.width, self.height))
+                frame_resized = cv2.resize(frame_rgb, (width, height))
                 input_data = np.expand_dims(frame_resized, axis=0)
                 # Normalize pixel values if using a floating model (i.e. if model is non-quantized)
-                if self.floating_model:
-                    input_data = (np.float32(input_data) - self.input_mean) / self.input_std
+                if floating_model:
+                    input_data = (np.float32(input_data) - input_mean) / input_std
                 # Perform the actual detection by running the model with the image as input
                 tic = time.time() 
-                self.interpreter.set_tensor(self.input_details[0]['index'],input_data)
-                self.interpreter.invoke()
+                interpreter.set_tensor(input_details[0]['index'],input_data)
+                interpreter.invoke()
                 toc = time.time()
                 print(toc-tic, 'seconds')
                 # Retrieve detection results
-                boxes = self.interpreter.get_tensor(self.output_details[self.boxes_idx]['index'])[0] # Bounding box coordinates of detected objects
-                classes = self.interpreter.get_tensor(self.output_details[self.classes_idx]['index'])[0] # Class index of detected objects
-                scores = self.interpreter.get_tensor(self.output_details[self.scores_idx]['index'])[0] # Confidence of detected objects
+                boxes = interpreter.get_tensor(output_details[boxes_idx]['index'])[0] # Bounding box coordinates of detected objects
+                classes = interpreter.get_tensor(output_details[classes_idx]['index'])[0] # Class index of detected objects
+                scores = interpreter.get_tensor(output_details[scores_idx]['index'])[0] # Confidence of detected objects
                 
                 # Plot predicted trajectory (safe zone)
                 # p1, p2, p3, p4 = map(Point, [(570, 1074), (856, 758), (1062, 756), (1372, 1078)])
@@ -147,17 +147,17 @@ def shw(self):
                 
                 # Loop over all detections and draw detection box if confidence is above minimum threshold
                 for i in range(len(scores)):
-                    object_name = self.labels[int(classes[i])] # Look up object name from "labels" array using class index
+                    object_name = labels[int(classes[i])] # Look up object name from "labels" array using class index
                     print(object_name)
                     print('inside for')
-                    if ((scores[i] > self.min_conf_threshold) and (scores[i] <= 1.0)):
+                    if ((scores[i] > min_conf_threshold) and (scores[i] <= 1.0)):
                         print('inside if')
                         # Get bounding box coordinates and draw box
                         # Interpreter can return coordinates that are outside of image dimensions, need to force them to be within image using max() and min()
-                        ymin = int(max(1,(boxes[i][0] * self.imH)))
-                        xmin = int(max(1,(boxes[i][1] * self.imW)))
-                        ymax = int(min(self.imH,(boxes[i][2] * self.imH)))
-                        xmax = int(min(self.imW,(boxes[i][3] * self.imW)))
+                        ymin = int(max(1,(boxes[i][0] * imH)))
+                        xmin = int(max(1,(boxes[i][1] * imW)))
+                        ymax = int(min(imH,(boxes[i][2] * imH)))
+                        xmax = int(min(imW,(boxes[i][3] * imW)))
                         
                         # cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (10, 255, 0), 4)
                         
@@ -222,7 +222,7 @@ def shw(self):
                 cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
                 # plt.show()
                 
-                self.result.write(frame)
+                result.write(frame)
                 #QApplication.processEvents()
                 
                 
@@ -233,8 +233,8 @@ def shw(self):
                     break
                 
         # Clean up
-        self.video.release()
-        self.result.release()
+        video.release()
+        result.release()
         
         cv2.destroyAllWindows()
         #self.lock.release()
