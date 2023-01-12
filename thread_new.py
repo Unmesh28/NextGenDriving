@@ -378,7 +378,7 @@ class NewWorkerThread (QObject):
                 cv2.putText(frame,'FPS: {0:.2f}'.format(self.frame_rate_calc),(30,50),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,0),2,cv2.LINE_AA)
                 frameS = cv2.resize(frame, (960, 540))  
                 # All the results have been drawn on the frame, so it's time to display it.
-                cv2.imshow('FCW + PCW + MBCW + ACW', frameS)
+                #cv2.imshow('FCW + PCW + MBCW + ACW', frameS)
                 # cv2.imshow('FCW + PCW + MBCW + ACW', cv2.pyrDown(frame))
                 # print(i)
                 cv2.imwrite('/home/pi/tflite1/AI_Buddy_Field_Test/7_inch_DSI_LCD_C/28_Sep_2022/Test25/Frame'+str(frame_num).zfill(4)+'.jpg', frame)
