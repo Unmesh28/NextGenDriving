@@ -715,7 +715,7 @@ class Ui_MainWindow(object):
 
     def ThreadOpen(self):
         print('Inside Thred')
-        self.worker = NewWorkerThread(self)
+        self.worker = WorkerThread(self)
         self.worker.start()
         self.worker.sig.connect(self.changeImg)
         #self.worker.moveToThread(QThread())
