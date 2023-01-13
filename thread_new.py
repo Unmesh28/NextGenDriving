@@ -11,8 +11,6 @@ import pygame
 from shapely.geometry import Polygon
 import math
 from PyQt5.QtCore import QThread, pyqtSignal, QObject, Qt
-from PyQt5.QtConcurrent import run
-
 
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
@@ -85,7 +83,8 @@ class NewWorkerThread (QObject):
 
     
     def start_task(self):
-        self.future = run(self.run)
+        self.run()
+        self.thread.quit()
 
     def stop(self):
         self.thread.stop()
