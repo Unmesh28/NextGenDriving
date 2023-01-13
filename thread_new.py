@@ -11,6 +11,7 @@ import pygame
 from shapely.geometry import Polygon
 import math
 from PyQt5.QtCore import QThread, pyqtSignal, QObject, Qt
+from PyQt5.QtWidgets import QApplication
 
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
@@ -391,6 +392,8 @@ class NewWorkerThread (QObject):
                 t2 = cv2.getTickCount()
                 time1 = (t2-t1)/self.freq
                 self.frame_rate_calc= 1/time1
+
+                QApplication.processEvents()
 
                 # Press 'q' to quit
                 if cv2.waitKey(1) == ord('q'):
