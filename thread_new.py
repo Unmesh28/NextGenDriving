@@ -48,6 +48,7 @@ class VideoStream:
             (self.grabbed, self.frame) = self.stream.read()
 
     def read(self):
+        print('Inside Read')
 	# Return the most recent frame
         return self.frame
 
@@ -256,6 +257,7 @@ class NewWorkerThread (QObject):
 
                 # Grab frame from video stream
                 frame1 = videostream.read()
+                print(type(frame1))
                 frame_num += 1
                 f = open("/home/pi/tflite1/GPS_speed.txt", "r")
                 Speed = float(f.read())
