@@ -128,6 +128,7 @@ class NewWorkerThread (QObject):
     min_conf_threshold = float(0.5)
     use_TPU = False
     imW, imH = 1920, 1080 #int(resW), int(resH)
+    stopped = False
 
     # Import TensorFlow libraries
     # If tflite_runtime is installed, import interpreter from tflite_runtime, else import from regular tensorflow
@@ -248,9 +249,8 @@ class NewWorkerThread (QObject):
             videostream = VideoStream(resolution=(self.imW,self.imH),framerate=30).start()
             time.sleep(1)
             frame_num = 0
-            total_frames = int(videostream.get(cv2.CAP_PROP_FRAME_COUNT))
             
-            for i in range(total_frames):
+            while not self.stopped:
                     # Start timer (for calculating frame rate)
                 t1 = cv2.getTickCount()
 
