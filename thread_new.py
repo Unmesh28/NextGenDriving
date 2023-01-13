@@ -210,14 +210,13 @@ class NewWorkerThread (QObject):
     freq = cv2.getTickFrequency()
 
     
-    #for frame1 in camera.capture_continuous(rawCapture, format="bgr",use_video_port=True):
+    # Calibration 13/01/2023
+    Zone_10 = Polygon([(704, 1078), (844, 972), (972, 972), (1054, 1078)])  #shapely
+    Zone_20 = Polygon([(704, 1078), (854, 914), (936, 914), (1054, 1078)])  #shapely
+    Zone_30 = Polygon([(704, 1078), (864, 892), (918, 892), (1054, 1078)])  #shapely
+    Zone_40 = Polygon([(704, 1078), (874, 874), (914, 874), (1054, 1078)])  #shapely
+    Zone_50 = Polygon([(704, 1078), (882, 860), (908, 860), (1054, 1078)])  #shapely
 
-    Zone_10 = Polygon([(738, 996), (800, 924), (1044, 924), (1116, 1006)])  #shapely
-    Zone_20 = Polygon([(738, 996), (860, 846), (968, 850), (1116, 1006)])  #shapely
-    Zone_30 = Polygon([(738, 996), (874, 836), (954, 836), (1116, 1006)])  #shapely
-    Zone_40 = Polygon([(738, 996), (892, 820), (942, 820), (1116, 1006)])  #shapely
-    Zone_50 = Polygon([(738, 996), (896, 804), (934, 806), (1116, 1006)])  #shapely
-    # Zone_60 = Polygon([(850, 1079), (1314, 734), (1456, 738), (1620, 1079)])  #shapely
 
     Default_zone1 = Zone_20 # Polygon([(640, 564), (559, 715), (937, 704), (708, 563)])# Zone_30
     Default_zone2 = Zone_40 # Polygon([(649, 533), (565, 715), (919, 707), (677, 533)])# Zone_60
