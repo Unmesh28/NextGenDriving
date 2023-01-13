@@ -24,6 +24,7 @@ class Ui_MainWindow(object):
     toggle_State = 0
 
     def setupUi(self, MainWindow):
+        print('***************************** Inside SetUp UI *************************************')
         global bat_start, bat_len, Starting_point, btn_height, btn_width, bottom_btn_height, top_btn_height, Starting_point_y, Starting_point_x, margin, back_fac, btn_text,buttonPadcolor,padding ,width_rows
         MainWindow.setObjectName("MainWindow")
 
