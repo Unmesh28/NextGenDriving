@@ -248,13 +248,15 @@ class NewWorkerThread (QObject):
             videostream = VideoStream(resolution=(self.imW,self.imH),framerate=30).start()
             time.sleep(1)
             frame_num = 0
+            total_frames = int(videostream.get(cv2.CAP_PROP_FRAME_COUNT))
             
-            while(True):
+            for i in range(total_frames):
                     # Start timer (for calculating frame rate)
                 t1 = cv2.getTickCount()
 
                 # Grab frame from video stream
                 frame1 = videostream.read()
+                frame_num += 1
                 f = open("/home/pi/tflite1/GPS_speed.txt", "r")
                 Speed = float(f.read())
                 if Speed < 0.0:
