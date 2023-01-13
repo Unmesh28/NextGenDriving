@@ -42,6 +42,7 @@ class WorkerThread (QObject):
     def start(self):
         # Start the thread
         self.thread.start()
+        
 
 
     
