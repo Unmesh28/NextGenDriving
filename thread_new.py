@@ -347,28 +347,28 @@ class NewWorkerThread (QObject):
                             pygame.mixer.music.play()
                         
                         else :
-                                print('No intersection')
-                                self.sig.emit(1, 1)
-                                self.sig.emit(2, 2)
-                                self.sig.emit(3, 3)
-                                self.sig.emit(4, 4)
-                                self.sig.emit(5, 5)
+                            print('No intersection')
+                            self.sig.emit(1, 1)
+                            self.sig.emit(2, 2)
+                            self.sig.emit(3, 3)
+                            self.sig.emit(4, 4)
+                            self.sig.emit(5, 5)
                                 
                         if poly_critical.intersects(poly2):
                             imageNo = self.findImageNo(object_name)
                             cv2.rectangle(frame, (xmin,ymin), (xmax,ymax), (0, 0, 255), 4)
-                            #self.sig.emit(imageNo, 50 + imageNo)
+                            self.sig.emit(imageNo, 50 + imageNo)
                             pygame.mixer.init()
                             pygame.mixer.music.load("beep-09.wav")
                             pygame.mixer.music.play()
 
                         else :
-                                print('No intersection')
-                                self.sig.emit(1, 1)
-                                self.sig.emit(2, 2)
-                                self.sig.emit(3, 3)
-                                self.sig.emit(4, 4)
-                                self.sig.emit(5, 5)
+                            print('No intersection')
+                            self.sig.emit(1, 1)
+                            self.sig.emit(2, 2)
+                            self.sig.emit(3, 3)
+                            self.sig.emit(4, 4)
+                            self.sig.emit(5, 5)
 
                         # Draw label
                         
