@@ -80,5 +80,5 @@ def getSpeed():
   
   return speed
   
-getSpeed()
+#getSpeed()
 

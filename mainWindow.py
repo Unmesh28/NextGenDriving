@@ -11,6 +11,7 @@ from PyQt5.QtCore import QUrl
 
 
 
+
 from secondWindow import Ui_secondWindow
 from thread_new import NewWorkerThread
 

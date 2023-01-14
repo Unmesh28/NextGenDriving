@@ -12,6 +12,7 @@ from shapely.geometry import Polygon
 import math
 from PyQt5.QtCore import QThread, pyqtSignal, QObject, Qt
 from PyQt5.QtWidgets import QApplication
+from gps_new import *
 
 
 # Define VideoStream class to handle streaming of video from webcam in separate processing thread
@@ -259,8 +260,9 @@ class NewWorkerThread (QObject):
                 frame1 = videostream.read()
                 print(type(frame1))
                 frame_num += 1
-                f = open("/home/pi/tflite1/NextGenDriving/NextGenDriving/GPS_speed.txt", "r")
-                Speed = float(f.read())
+                #f = open("/home/pi/tflite1/NextGenDriving/NextGenDriving/GPS_speed.txt", "r")
+                Speed = float(getSpeed())
+                print("Speed : " + str(Speed))
                 if Speed < 0.0:
                     continue    
                 # frame_num = videostream.get(cv2.CAP_PROP_POS_FRAMES)
