@@ -288,8 +288,8 @@ class NewWorkerThread (QObject):
                 scores = self.interpreter.get_tensor(self.output_details[self.scores_idx]['index'])[0] # Confidence of detected objects
                 # print(math.ceil(int(Speed)*2/10)*10)
                 
-                Crit_zone1 = float(Speed)*0.7
-                Crit_zone2 = float(Speed)*1.5
+                Crit_zone1 = float(Speed)*1.5
+                Crit_zone2 = float(Speed)*2
                 # Crit_zone3 = math.ceil(int(Speed)*3/10)*10
                 
                 if Crit_zone1 < 10:
