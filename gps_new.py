@@ -64,12 +64,12 @@ def getSpeed():
       speed = 0
       prev_speed = 0
       if str(gpsd.fix.speed) != 'nan':
-          myFile = open("/home/pi/tflite1/GPS_speed.txt", "w")
+          myFile = open("/home/pi/tflite1/NextGenDriving/NextGenDriving/GPS_speed.txt", "w")
           myFile.write(str(gpsd.fix.speed))
           myFile.close()
           speed = str(gpsd.fix.speed)
       else :
-          myFile = open("/home/pi/tflite1/GPS_speed.txt", "w")
+          myFile = open("/home/pi/tflite1/NextGenDriving/NextGenDriving/GPS_speed.txt", "w")
           myFile.write(str(speed))
  
   except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
