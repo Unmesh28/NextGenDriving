@@ -260,7 +260,7 @@ class NewWorkerThread (QObject):
                 frame1 = videostream.read()
                 print(type(frame1))
                 frame_num += 1
-                f = open("/home/pi/tflite1/NextGenDriving/NextGenDriving/GPS_speed.txt", "r")
+                f = open("/home/pi/NextGenDriving/GPS_speed.txt", "r")
                 Speed = float(f.read())
                 if Speed < 0.0:
                     continue    
