@@ -1,4 +1,4 @@
-import bluetooth
+#import bluetooth
 import requests
 from PyQt5.QtCore import QThread, pyqtSignal, QObject, Qt
 from datetime import datetime
